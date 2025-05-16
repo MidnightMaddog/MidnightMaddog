@@ -11802,3 +11802,126 @@ section#contact form#contactForm :-ms-input-placeholder {
 .fa-stack-2x {
   font-size: 2em;
 }
+
+
+
+
+/* Quote Carousel Styles */
+.quote-carousel-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quote-carousel {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.quote-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+.quote-slide.active {
+    opacity: 1;
+}
+
+.quote-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.quote-author {
+    text-align: right;
+    font-weight: bold;
+    color: #495057;
+}
+
+.quote-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+
+.quote-nav:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.prev-quote {
+    left: -20px;
+}
+
+.next-quote {
+    right: -20px;
+}
+
+.quote-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.quote-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 5px;
+    background-color: #dee2e6;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.quote-indicator.active {
+    background-color: #495057;
+}
+
+@media (max-width: 768px) {
+    .quote-carousel-container {
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+    
+    .quote-carousel {
+        height: 220px;
+    }
+    
+    .quote-content {
+        font-size: 1rem;
+    }
+    
+    .quote-nav {
+        width: 36px;
+        height: 36px;
+    }
+}
