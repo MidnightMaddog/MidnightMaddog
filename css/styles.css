@@ -11847,6 +11847,8 @@ section#contact form#contactForm :-ms-input-placeholder {
     font-style: italic;
     margin-bottom: 1rem;
     color: #212529;
+    padding: 30px; 
+    min-height: 200px;
 }
 
 .quote-author {
