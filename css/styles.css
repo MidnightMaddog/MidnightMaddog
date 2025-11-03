@@ -11821,6 +11821,7 @@ section#contact form#contactForm :-ms-input-placeholder {
     position: relative;
     width: 100%;
     height: 180px;
+    padding: 40px 60px;
     overflow: hidden;
 }
 
@@ -11847,8 +11848,7 @@ section#contact form#contactForm :-ms-input-placeholder {
     font-style: italic;
     margin-bottom: 1rem;
     color: #212529;
-    padding: 30px; 
-    min-height: 200px;
+
 }
 
 .quote-author {
