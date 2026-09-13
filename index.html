@@ -1,11 +1,11 @@
-.c<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Midnight Maddog Landing Page</title>
+    <meta name="description" content="Midnight Maddog - Professional Event DJ Services for Weddings, Schools, and Community Events" />
+    <meta name="author" content="Midnight Maddog" />
+    <title>Midnight Maddog - Professional Event DJ</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
@@ -24,7 +24,572 @@
             opacity: 0.65;
         }
 
-        /* Photo Gallery Styles */
+        /* ===== REDESIGNED HERO STYLES ===== */
+        .masthead-redesigned {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin-top: 70px;
+        }
+
+        .hero-container {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(33, 37, 41, 0.7) 0%,
+                rgba(33, 37, 41, 0.5) 50%,
+                rgba(255, 200, 0, 0.1) 100%
+            );
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 700px;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-headline {
+            font-family: "Montserrat", sans-serif;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 1rem 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subheading {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            font-weight: 300;
+            line-height: 1.6;
+            margin: 0 0 2rem 0;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+            opacity: 0.95;
+        }
+
+        .hero-proof {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .proof-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .proof-number {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #ffc800;
+        }
+
+        .proof-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .proof-stars {
+            color: #ffc800;
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .proof-rating {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Three CTA Cards */
+        .hero-ctas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .cta-card {
+            padding: 2.5rem;
+            background: white;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 12px 12px 0 0;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        .cta-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-card.wedding::before {
+            background: linear-gradient(90deg, #c41e3a, #e60d4d);
+        }
+
+        .cta-card.school::before {
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+        }
+
+        .cta-card.community::before {
+            background: linear-gradient(90deg, #059669, #10b981);
+        }
+
+        .cta-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            padding: 12px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .cta-card.wedding .cta-icon {
+            background: rgba(196, 30, 58, 0.1);
+            color: #c41e3a;
+        }
+
+        .cta-card.school .cta-icon {
+            background: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+        }
+
+        .cta-card.community .cta-icon {
+            background: rgba(5, 150, 105, 0.1);
+            color: #059669;
+        }
+
+        .cta-card:hover .cta-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .cta-card h3 {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 0 0.75rem 0;
+            color: #212529;
+        }
+
+        .cta-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #495057;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+        }
+
+        .cta-card.wedding .cta-link {
+            color: #c41e3a;
+            background: rgba(196, 30, 58, 0.08);
+        }
+
+        .cta-card.wedding .cta-link:hover {
+            background: rgba(196, 30, 58, 0.15);
+            transform: translateX(4px);
+        }
+
+        .cta-card.school .cta-link {
+            color: #2563eb;
+            background: rgba(37, 99, 235, 0.08);
+        }
+
+        .cta-card.school .cta-link:hover {
+            background: rgba(37, 99, 235, 0.15);
+            transform: translateX(4px);
+        }
+
+        .cta-card.community .cta-link {
+            color: #059669;
+            background: rgba(5, 150, 105, 0.08);
+        }
+
+        .cta-card.community .cta-link:hover {
+            background: rgba(5, 150, 105, 0.15);
+            transform: translateX(4px);
+        }
+
+        /* ===== NARRATIVE CARDS SECTION STYLES ===== */
+        .narrative-section {
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: "Montserrat", sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 0 1rem 0;
+            color: #212529;
+        }
+
+        .section-subtitle {
+            font-family: "Roboto Slab", serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            font-style: italic;
+            color: #6c757d;
+            margin: 0;
+        }
+
+        .narrative-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: stretch;
+        }
+
+        .narrative-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .narrative-card:nth-child(even) {
+            direction: rtl;
+        }
+
+        .narrative-card:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            background: #e9ecef;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.4s ease;
+        }
+
+        .narrative-card:hover .card-image {
+            transform: scale(1.05);
+        }
+
+        .card-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.15);
+            transition: background 0.4s ease;
+        }
+
+        .narrative-card:hover .card-image-overlay {
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .card-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-header {
+            margin-bottom: 2rem;
+        }
+
+        .card-title {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+            line-height: 1.2;
+            color: #212529;
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+            color: #495057;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .card-benefits {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+
+        .card-benefits li {
+            padding: 0.75rem 0 0.75rem 2rem;
+            position: relative;
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        .card-benefits li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ffc800;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .wedding-card .card-benefits li:before {
+            color: #c41e3a;
+        }
+
+        .school-card .card-benefits li:before {
+            color: #2563eb;
+        }
+
+        .community-card .card-benefits li:before {
+            color: #059669;
+        }
+
+        .card-testimonial {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid #ffc800;
+        }
+
+        .wedding-card .card-testimonial {
+            border-left-color: #c41e3a;
+        }
+
+        .school-card .card-testimonial {
+            border-left-color: #2563eb;
+        }
+
+        .community-card .card-testimonial {
+            border-left-color: #059669;
+        }
+
+        .card-testimonial blockquote {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-style: italic;
+            color: #212529;
+            margin: 0 0 1rem 0;
+        }
+
+        .card-testimonial cite {
+            display: block;
+            font-style: normal;
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
+        .card-insight {
+            background: rgba(255, 200, 0, 0.05);
+            padding: 1.25rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #495057;
+            margin: 1.5rem 0;
+        }
+
+        .wedding-card .card-insight {
+            background: rgba(196, 30, 58, 0.05);
+        }
+
+        .school-card .card-insight {
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .community-card .card-insight {
+            background: rgba(5, 150, 105, 0.05);
+        }
+
+        .card-insight strong {
+            color: #212529;
+        }
+
+        .card-cta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            border-radius: 6px;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #ffc800;
+            color: white;
+            border-color: #ffc800;
+        }
+
+        .btn-primary:hover {
+            background: #e6b000;
+            border-color: #e6b000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 200, 0, 0.3);
+        }
+
+        .wedding-card .btn-primary {
+            background: #c41e3a;
+            border-color: #c41e3a;
+        }
+
+        .wedding-card .btn-primary:hover {
+            background: #a01729;
+            border-color: #a01729;
+            box-shadow: 0 4px 12px rgba(196, 30, 58, 0.3);
+        }
+
+        .school-card .btn-primary {
+            background: #2563eb;
+            border-color: #2563eb;
+        }
+
+        .school-card .btn-primary:hover {
+            background: #1d4ed8;
+            border-color: #1d4ed8;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .community-card .btn-primary {
+            background: #059669;
+            border-color: #059669;
+        }
+
+        .community-card .btn-primary:hover {
+            background: #047857;
+            border-color: #047857;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #495057;
+            border-color: #dee2e6;
+        }
+
+        .btn-outline:hover {
+            background: #f8f9fa;
+            border-color: #495057;
+            color: #212529;
+        }
+
+        /* ===== PHOTO GALLERY STYLES ===== */
         #gallery {
             background: #212529;
             padding: 80px 0;
@@ -247,7 +812,106 @@
             color: #ffc800;
         }
 
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 1200px) {
+            .hero-ctas {
+                padding: 5rem 4rem;
+            }
+
+            .cta-card {
+                padding: 3rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .masthead-redesigned {
+                margin-top: 60px;
+            }
+
+            .hero-container {
+                min-height: 400px;
+            }
+
+            .narrative-card {
+                grid-template-columns: 1fr;
+            }
+
+            .narrative-card:nth-child(even) {
+                direction: ltr;
+            }
+
+            .card-content {
+                padding: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
         @media (max-width: 768px) {
+            .masthead-redesigned {
+                margin-top: 50px;
+            }
+
+            .hero-container {
+                min-height: 300px;
+            }
+
+            .hero-content {
+                padding: 1.5rem;
+            }
+
+            .hero-proof {
+                gap: 1rem;
+            }
+
+            .hero-ctas {
+                padding: 2rem 1rem;
+                gap: 1.5rem;
+            }
+
+            .cta-card {
+                padding: 1.75rem;
+            }
+
+            .proof-item {
+                gap: 0.125rem;
+            }
+
+            .proof-number {
+                font-size: 1.5rem;
+            }
+
+            .narrative-section {
+                padding: 3rem 0;
+            }
+
+            .section-header {
+                margin-bottom: 2rem;
+            }
+
+            .card-content {
+                padding: 1.75rem;
+            }
+
+            .card-title {
+                font-size: 1.35rem;
+            }
+
+            .card-cta {
+                flex-direction: column;
+            }
+
+            .card-cta .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .narrative-card {
+                margin-bottom: 2rem;
+            }
+
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 15px;
@@ -281,8 +945,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#weddings">Weddings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#schools">Schools</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#community">Community</a></li>
                     <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
@@ -290,204 +955,221 @@
         </div>
     </nav>
 
-    <!-- Masthead-->
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-subheading"><br /></div>
-            <div class="masthead-heading text-uppercase">Midnight maddog</div>
-            
-            <!-- Quote Carousel Container -->
-            <div class="quote-carousel-container">
-                <div class="quote-carousel">
-                    <!-- Quote Slides -->
-             
-                    <div class="quote-slide active">
-                        <div class="quote-content">"Our high school has worked with Maddox for several years, and he has consistently been our first choice to DJ school dances and events. We can always count on his professionalism and punctuality. Maddox strikes the perfect balance between playing current music that excites our students and ensuring that it remains clean and appropriate for a high school audience."</div>
-                        <div class="quote-author">- Christine Slack, Teacher at Covenant Day High School.</div>
+    <!-- REDESIGNED HERO SECTION -->
+    <header class="masthead-redesigned">
+        <div class="hero-container">
+            <!-- Full-bleed background image with overlay -->
+            <div class="hero-background">
+                <img src="assets/img/2.jpg" alt="Midnight Maddog DJ at a vibrant event with engaged guests" class="hero-image">
+                <div class="hero-overlay"></div>
+            </div>
+
+            <!-- Hero content -->
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-headline">Your Event Deserves More Than a Playlist</h1>
+                    <p class="hero-subheading">Live DJ services that transform your vision into an unforgettable experience.</p>
+                    
+                    <!-- Social proof - subtle but credible -->
+                    <div class="hero-proof">
+                        <div class="proof-item">
+                            <span class="proof-number">40+</span>
+                            <span class="proof-label">Events Since 2023</span>
+                        </div>
+                        <div class="proof-item">
+                            <span class="proof-stars">★★★★★</span>
+                            <span class="proof-rating">Trusted by Couples, Schools & Communities</span>
+                        </div>
                     </div>
-                    
-                    <div class="quote-slide">
-                        <div class="quote-content">"DJ Maddog is a MUST for every party! He is the best DJ out there—executing everything flawlessly from beginning to end. He is incredibly gifted in knowing exactly what the client wants, and makes sure every detail is covered with the set up, timing, transitions, and specific music requests."</div>
-                        <div class="quote-author">- Jenny Morgan, U.S. Diplomat</div>
-                    </div>
-                    
-                    <div class="quote-slide">
-                        <div class="quote-content">"We see dozens of DJs come every weekend and I'm going to give your business card around because you are one of the best."</div>
-                        <div class="quote-author">- Head Chef of Venue</div>
-                    </div>
-                    
-                    <div class="quote-slide">
-                        <div class="quote-content">"Maddog DJ has been our "go to" DJ for all our school dances for the last 4 years. He is a great listener, takes the time to get to know his clients and is a fantastic communicator. The music is always well curated and very well received. You can see his passion for music in all he does and brings the energy to every event."</div>
-                        <div class="quote-author">- Dr. Rebecca Burnett, Student Council supervisor for Covenant Day High School.</div>
-                    </div>
-                    
-             
-                    
-                    <!-- Navigation Buttons -->
-                    <button class="quote-nav prev-quote">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="quote-nav next-quote">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-                
-                <!-- Indicators -->
-                <div class="quote-indicators">
-                    <span class="quote-indicator active" data-index="0"></span>
-                    <span class="quote-indicator" data-index="1"></span>
-                    <span class="quote-indicator" data-index="2"></span>
-                    <span class="quote-indicator" data-index="3"></span>
                 </div>
             </div>
-            
-            <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
+        </div>
+
+        <!-- Three segmented CTAs below hero -->
+        <div class="hero-ctas">
+            <div class="cta-card wedding">
+                <div class="cta-icon">
+                    <i class="fas fa-ring"></i>
+                </div>
+                <h3>Planning a Wedding?</h3>
+                <p>First dance entrances, seamless transitions, vendor coordination—everything handled.</p>
+                <a href="#weddings" class="cta-link">Explore Wedding DJ <span>→</span></a>
+            </div>
+
+            <div class="cta-card school">
+                <div class="cta-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>School Event Coming Up?</h3>
+                <p>Age-appropriate energy, song requests, professional sound—your students will talk about it.</p>
+                <a href="#schools" class="cta-link">Book a School DJ <span>→</span></a>
+            </div>
+
+            <div class="cta-card community">
+                <div class="cta-icon">
+                    <i class="fas fa-people-group"></i>
+                </div>
+                <h3>Church or Community Event?</h3>
+                <p>Professional, respectful, reliable—we understand your mission and values.</p>
+                <a href="#community" class="cta-link">Let's Talk <span>→</span></a>
+            </div>
         </div>
     </header>
 
-    <!-- Services-->
-    <section class="page-section focused" id="services">
+    <!-- NARRATIVE CARDS SECTION - Replaces "Services" -->
+    <section class="page-section narrative-section" id="what-we-do">
         <div class="container">
-            <div class="row">
-                <!-- School Dances Section -->
-                <div class="col-md-4 text-center">
-                    <span class="fa-stack fa-8x">
-                        <i class="fas fa-circle fa-stack-1x text-primary"></i>
-                        <i class="fas fa-graduation-cap fa-stack-1x fa-inverse" style="color: black;"></i>
-                    </span>
-                    <h4 class="my-3">School Dances</h4>
-                    <p class="text-muted">Kick off a dance with a DJ ready to rock with the students. Midnight Maddog is in tune with the best clean hits for any school function.</p>
+            <div class="section-header">
+                <h2 class="section-title">What Happens When Midnight Maddog Shows Up</h2>
+                <p class="section-subtitle">Different events, same commitment: unforgettable experiences.</p>
+            </div>
+
+            <!-- WEDDING CARD -->
+            <div class="narrative-card wedding-card" id="weddings">
+                <div class="card-image-wrapper">
+                    <img src="assets/img/portfolio/3.jpg" alt="Couple's first dance at a wedding event" class="card-image">
+                    <div class="card-image-overlay"></div>
                 </div>
-                
-                <!-- Parties Section -->
-                <div class="col-md-4 text-center">
-                    <span class="fa-stack fa-8x">
-                        <i class="fas fa-circle fa-stack-1x text-primary"></i>
-                        <i class="fas fa-cake-candles fa-stack-1x fa-inverse" style="color: black;"></i>
-                    </span>
-                    <h4 class="my-3">Parties</h4>
-                    <p class="text-muted">Every party needs good music to set just the right mood. Put on a dj instead of a playlist to match the mood and energy of any event.</p>
+
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Your First Dance Deserves an Entrance</h3>
+                        <p class="card-subtitle">Because this day is as important to me as it is to you.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <ul class="card-benefits">
+                            <li>Perfect timing on the first dance entrance</li>
+                            <li>Seamless transitions between ceremony, dinner, and dancing</li>
+                            <li>MC'ing that feels natural (not cheesy)</li>
+                            <li>Your song requests & dance floor flow</li>
+                            <li>Full vendor coordination & technical reliability</li>
+                            <li>Professional setup & sound checks</li>
+                        </ul>
+
+                        <div class="card-testimonial">
+                            <blockquote>
+                                "Our high school has worked with Maddox for several years, and he has consistently been our first choice to DJ school dances and events. We can always count on his professionalism and punctuality. Maddox strikes the perfect balance between playing current music that excites our students and ensuring that it remains clean and appropriate for a high school audience."
+                            </blockquote>
+                            <cite>— Christine Slack, Teacher at Covenant Day High School</cite>
+                        </div>
+
+                        <p class="card-insight">
+                            <strong>What makes the difference:</strong> It's the difference between a good reception and one your guests still talk about years later. You want someone who understands that your wedding day is the culmination of months of planning—and you deserve a DJ who respects that.
+                        </p>
+                    </div>
+
+                    <div class="card-cta">
+                        <a href="#contact" class="btn btn-primary">Plan My Wedding</a>
+                        <a href="mailto:Maddogdjservices@gmail.com?subject=Wedding%20DJ%20Inquiry" class="btn btn-outline">Email Me</a>
+                    </div>
                 </div>
-                
-                <!-- Weddings Section -->
-                <div class="col-md-4 text-center">
-                    <span class="fa-stack fa-8x">
-                        <i class="fas fa-circle fa-stack-1x text-primary"></i>
-                        <i class="fas fa-ring fa-stack-1x fa-inverse" style="color: black;"></i>
-                    </span>
-                    <h4 class="my-3">Weddings</h4>
-                    <p class="text-muted">On such an important day, there is no stronger call for a DJ to make the day even more magical. Midnight Maddog will create a lively and engaging atmosphere through music and emceeing.</p>
+            </div>
+
+            <!-- SCHOOL EVENT CARD -->
+            <div class="narrative-card school-card" id="schools">
+                <div class="card-image-wrapper">
+                    <img src="assets/img/portfolio/2.jpg" alt="Full dance floor at a high school event with engaged students" class="card-image">
+                    <div class="card-image-overlay"></div>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">When the DJ Actually Knows How to Read a Room</h3>
+                        <p class="card-subtitle">Energy that matches your students—not against them.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <ul class="card-benefits">
+                            <li>I know what students actually want to hear (not what I think they should hear)</li>
+                            <li>High energy that keeps the dance floor packed</li>
+                            <li>Age-appropriate songs (clean, current, credible)</li>
+                            <li>Takes requests without losing the flow</li>
+                            <li>Sound system that fills the gym (not overwhelming)</li>
+                            <li>Works with school policies & advisor guidance</li>
+                        </ul>
+
+                        <div class="card-testimonial">
+                            <blockquote>
+                                "DJ Maddog is a MUST for every party! He is the best DJ out there—executing everything flawlessly from beginning to end. He is incredibly gifted in knowing exactly what the client wants, and makes sure every detail is covered with the set up, timing, transitions, and specific music requests."
+                            </blockquote>
+                            <cite>— Jenny Morgan, U.S. Diplomat</cite>
+                        </div>
+
+                        <p class="card-insight">
+                            <strong>What makes the difference:</strong> Students don't fake engagement. If they're on the dance floor, it's because they're genuinely into the music and the vibe. That's not luck—that's a DJ who listens to what a room wants and delivers it in real time.
+                        </p>
+                    </div>
+
+                    <div class="card-cta">
+                        <a href="#contact" class="btn btn-primary">Book a School DJ</a>
+                        <a href="mailto:Maddogdjservices@gmail.com?subject=School%20Event%20DJ%20Inquiry" class="btn btn-outline">Email Me</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHURCH/COMMUNITY CARD -->
+            <div class="narrative-card community-card" id="community">
+                <div class="card-image-wrapper">
+                    <img src="assets/img/portfolio/1.jpg" alt="Community gathering with engaged attendees enjoying the event" class="card-image">
+                    <div class="card-image-overlay"></div>
+                </div>
+
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional. Respectful. Invested in Your Mission.</h3>
+                        <p class="card-subtitle">A DJ who understands what matters to your community.</p>
+                    </div>
+
+                    <div class="card-body">
+                        <ul class="card-benefits">
+                            <li>I understand your event's tone and values</li>
+                            <li>Technical reliability (you never have to worry)</li>
+                            <li>Clear communication from start to finish</li>
+                            <li>Flexible with last-minute changes</li>
+                            <li>Professional appearance & demeanor</li>
+                            <li>References available from similar events</li>
+                        </ul>
+
+                        <div class="card-testimonial">
+                            <blockquote>
+                                "Maddog DJ has been our 'go to' DJ for all our school dances for the last 4 years. He is a great listener, takes the time to get to know his clients and is a fantastic communicator. The music is always well curated and very well received. You can see his passion for music in all he does and brings the energy to every event."
+                            </blockquote>
+                            <cite>— Dr. Rebecca Burnett, Student Council Supervisor, Covenant Day High School</cite>
+                        </div>
+
+                        <p class="card-insight">
+                            <strong>What makes the difference:</strong> When you're planning a church fundraiser, community celebration, or service event, the DJ is one of many moving pieces. You need someone reliable who understands your mission and won't create complications—just delivers solid professionalism so you can focus on what matters.
+                        </p>
+                    </div>
+
+                    <div class="card-cta">
+                        <a href="#contact" class="btn btn-primary">Let's Talk</a>
+                        <a href="mailto:Maddogdjservices@gmail.com?subject=Community%20Event%20DJ%20Inquiry" class="btn btn-outline">Email Me</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Grid-->
-    <section class="page-section bg-light" id="portfolio">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">Experience</h2>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 1-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Wolfbytes Radio</div>
-                            <div class="portfolio-caption-subheading text-muted">Regular DJ</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 2-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">School Dances</div>
-                            <div class="portfolio-caption-subheading text-muted">DJ and MC</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 3-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Weddings</div>
-                            <div class="portfolio-caption-subheading text-muted">DJ and MC</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NEW: Photo Gallery Section -->
+    <!-- Gallery Section -->
     <section class="page-section gallery-section" id="gallery">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading">Event Gallery</h2>
-                <p class="section-subheading">Capturing unforgettable moments</p>
+                <h2 class="section-heading">Gallery of Unforgettable Moments</h2>
+                <p class="section-subheading">Real events, real energy, real results.</p>
             </div>
 
+            <!-- Filter Buttons -->
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">All Events</button>
                 <button class="filter-btn" data-filter="wedding">Weddings</button>
-                <button class="filter-btn" data-filter="school">School Dances</button>
-                <button class="filter-btn" data-filter="party">Parties</button>
+                <button class="filter-btn" data-filter="school">Schools</button>
+                <button class="filter-btn" data-filter="party">Community</button>
             </div>
 
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- Each gallery item needs: data-category, img src, overlay-title, overlay-subtitle -->
-
-                <div class="gallery-item" data-category="school">
-                    <img src="assets/img/gallery/Hoco crowd 3.jpg" alt="School Dance">
-                    <div class="gallery-overlay">
-                        <div class="overlay-title">Homecoming Dance</div>
-                        <div class="overlay-subtitle">September 2024</div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="party">
-                    <img src="assets/img/gallery/Halloween Costume.jpg" alt="Halloween Party">
-                    <div class="gallery-overlay">
-                        <div class="overlay-title">Halloween Trunk or Treat</div>
-                        <div class="overlay-subtitle">October 2024</div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="school">
-                    <img src="assets/img/gallery/Fall Fest 3.jpg" alt="School Fall Fest">
-                    <div class="gallery-overlay">
-                        <div class="overlay-title">School Homecoming Fall Fest</div>
-                        <div class="overlay-subtitle">Sept 2025</div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="school">
-                    <img src="assets/img/gallery/Hoco Setup 2.jpg" alt="Craze Event">
-                    <div class="gallery-overlay">
-                        <div class="overlay-title">School Craze Event</div>
-                        <div class="overlay-subtitle">Feb 2024</div>
-                    </div>
-                </div>
-
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
                 <div class="gallery-item" data-category="wedding">
                     <img src="assets/img/gallery/PXL_20240525_211048119.jpg" alt="Wedding Event">
                     <div class="gallery-overlay">
@@ -514,7 +1196,7 @@
                 <div class="gallery-item" data-category="school">
                     <img src="assets/img/gallery/Prom setup.jpg" alt="School Prom">
                     <div class="gallery-overlay">
-                        <div class="overlay-title">Junior/Senior Promg</div>
+                        <div class="overlay-title">Junior/Senior Prom</div>
                         <div class="overlay-subtitle">April 2024</div>
                     </div>
                 </div>
@@ -526,7 +1208,6 @@
                         <div class="overlay-subtitle">April 2025</div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -536,10 +1217,13 @@
         <div class="container">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Contact Me</h2>
-                <div>Email: Maddogdjservices@gmail.com</div>
-                <div>X (Twitter): @MidnightMaddog</div>
-                <div>Youtube: Midnight Maddog</div>
-                <div>Phone number: 909-923-9364</div>
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">Ready to make your event unforgettable?</p>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem;">
+                    <div><strong>Email:</strong> Maddogdjservices@gmail.com</div>
+                    <div><strong>Phone:</strong> 909-923-9364</div>
+                    <div><strong>X (Twitter):</strong> @MidnightMaddog</div>
+                    <div><strong>YouTube:</strong> Midnight Maddog</div>
+                </div>
             </div>
             <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                 <div class="row align-items-stretch mb-5">
@@ -565,7 +1249,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-4 text-lg-start">Copyright © Midnight Maddog 2025</div>
                 <div class="col-lg-4 my-3 my-lg-0">
-                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="https://x.com/MidnightMaddog" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 </div>
                 <div class="col-lg-4 text-lg-end">
                     <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
@@ -574,88 +1258,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Portfolio Modals (keeping existing modals) -->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="modal-body">
-                                <h2 class="text-uppercase">Wolfbytes Radio</h2>
-                                <p class="item-intro text-muted">Regular DJ</p>
-                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
-                                <p>The Midnight Maddog brand was born on Wolfbytes radio. Being a regular DJ on the official radio channel of NC State in Raleigh, he rocks a live mix in prime time every Saturday night and MC's as a radio talk host every week day. Check his DJ Profile out on <a href="https://wolfbytes.ncsu.edu/dj/maddog/">Wolfbytes Radio</a> and all his recordings on <a href="https://www.youtube.com/@maddogdjservices">Youtube</a>.</p>
-                                <ul class="list-inline">
-                                    <li><strong>Client:</strong> Wolfbytes Radio</li>
-                                    <li><strong>Category:</strong> Regular DJ</li>
-                                </ul>
-                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                    <i class="fas fa-xmark me-1"></i> Close Project
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="modal-body">
-                                <h2 class="text-uppercase">School Dances</h2>
-                                <p class="item-intro text-muted">DJ and MC</p>
-                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/2.jpg" alt="..." />
-                                <p>Midnight Maddog believes the most important part of DJing a dance is having fun with the students. He brings the energy the students love and is ready to rock the night in any venue. He has also DJed Highschool Graduation parties and general neighborhood events with a great ear for the music everyone wants to hear.</p>
-                                <ul class="list-inline">
-                                    <li><strong>Client:</strong> School Dances</li>
-                                    <li><strong>Category:</strong> School Dances</li>
-                                </ul>
-                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                    <i class="fas fa-xmark me-1"></i> Close Project
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="modal-body">
-                                <h2 class="text-uppercase">Weddings</h2>
-                                <p class="item-intro text-muted">DJ and MC</p>
-                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/3.jpg" alt="..." />
-                                <p>Midnight Maddog hosts weddings as DJ and MC. With full communication and years of experience Maddog brings perfect energy for the special day.</p>
-                                <ul class="list-inline">
-                                    <li><strong>Client:</strong> Weddings</li>
-                                    <li><strong>Category:</strong> DJ and MC</li>
-                                </ul>
-                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                    <i class="fas fa-xmark me-1"></i> Close Project
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Lightbox for Gallery -->
     <div class="lightbox" id="lightbox">
@@ -679,106 +1281,6 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-
-    <!-- Quote Carousel Script -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const carousel = document.querySelector('.quote-carousel');
-        const slides = document.querySelectorAll('.quote-slide');
-        const prevBtn = document.querySelector('.prev-quote');
-        const nextBtn = document.querySelector('.next-quote');
-        const indicators = document.querySelectorAll('.quote-indicator');
-        
-        let currentIndex = 0;
-        let intervalId;
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        function initCarousel() {
-            startAutoSlide();
-            setupEventListeners();
-        }
-        
-        function startAutoSlide() {
-            intervalId = setInterval(() => {
-                showSlide(getNextIndex());
-            }, 10000);
-        }
-        
-        function resetAutoSlide() {
-            clearInterval(intervalId);
-            startAutoSlide();
-        }
-        
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            indicators.forEach(indicator => indicator.classList.remove('active'));
-            slides[index].classList.add('active');
-            indicators[index].classList.add('active');
-            currentIndex = index;
-        }
-        
-        function getNextIndex() {
-            return (currentIndex + 1) % slides.length;
-        }
-        
-        function getPrevIndex() {
-            return (currentIndex - 1 + slides.length) % slides.length;
-        }
-        
-        function setupEventListeners() {
-            nextBtn.addEventListener('click', () => {
-                showSlide(getNextIndex());
-                resetAutoSlide();
-            });
-            
-            prevBtn.addEventListener('click', () => {
-                showSlide(getPrevIndex());
-                resetAutoSlide();
-            });
-            
-            indicators.forEach(indicator => {
-                indicator.addEventListener('click', () => {
-                    const index = parseInt(indicator.dataset.index);
-                    showSlide(index);
-                    resetAutoSlide();
-                });
-            });
-            
-            carousel.addEventListener('mouseenter', () => {
-                clearInterval(intervalId);
-            });
-            
-            carousel.addEventListener('mouseleave', startAutoSlide);
-            carousel.addEventListener('touchstart', handleTouchStart, false);
-            carousel.addEventListener('touchend', handleTouchEnd, false);
-        }
-        
-        function handleTouchStart(e) {
-            touchStartX = e.changedTouches[0].screenX;
-            clearInterval(intervalId);
-        }
-        
-        function handleTouchEnd(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-            resetAutoSlide();
-        }
-        
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const difference = touchStartX - touchEndX;
-            
-            if (difference > swipeThreshold) {
-                showSlide(getNextIndex());
-            } else if (difference < -swipeThreshold) {
-                showSlide(getPrevIndex());
-            }
-        }
-        
-        initCarousel();
-    });
-    </script>
 
     <!-- Gallery Filter and Lightbox Script -->
     <script>
