@@ -24,49 +24,36 @@
             opacity: 0.65;
         }
 
-        /* ===== ENHANCED HERO WITH PERSONALITY & ANIMATIONS ===== */
+        /* ===== ENHANCED HERO WITH FULL-WIDTH PHOTO & TEXT OVERLAY ===== */
         .masthead-redesigned {
             position: relative;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             margin-top: 70px;
-            background: #ffffff;
-        }
-
-        .hero-container {
-            position: relative;
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            gap: 0;
-            min-height: 600px;
+            background: #212529;
             overflow: hidden;
         }
 
-        /* LEFT SIDE: PHOTO */
-        .hero-photo-section {
-            position: relative;
-            height: 100%;
-            overflow: hidden;
-            background: linear-gradient(135deg, #212529 0%, #2a2e33 100%);
-        }
-
-        .hero-photo-wrapper {
-            position: relative;
+        /* Full-width background image container */
+        .hero-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
+            z-index: 1;
         }
 
-        .hero-photo {
+        .hero-bg-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
             animation: heroPhotoZoom 1.2s ease-out forwards;
-            transition: transform 0.3s ease;
         }
 
         @keyframes heroPhotoZoom {
@@ -80,68 +67,56 @@
             }
         }
 
-        .hero-photo-wrapper:hover .hero-photo {
-            transform: scale(1.02);
-        }
-
-        .hero-photo-overlay {
+        /* Gradient overlay - dark on edges, fades to transparent in center */
+        .hero-bg-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(
-                90deg,
-                rgba(33, 37, 41, 0.2) 0%,
-                rgba(33, 37, 41, 0) 50%,
-                rgba(255, 200, 0, 0) 100%
+            background: radial-gradient(
+                ellipse at center,
+                rgba(33, 37, 41, 0.3) 0%,
+                rgba(33, 37, 41, 0.5) 50%,
+                rgba(33, 37, 41, 0.85) 100%
             );
             pointer-events: none;
+            z-index: 2;
         }
 
-        /* Animated accent line */
-        .hero-accent-line {
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 4px;
-            height: 0;
-            background: linear-gradient(180deg, #ffc800, transparent);
-            animation: accentLineGrow 1.5s ease-out 0.3s forwards;
-        }
-
-        @keyframes accentLineGrow {
-            to {
-                height: 100%;
-            }
-        }
-
-        /* RIGHT SIDE: TEXT */
-        .hero-text-section {
+        /* Text overlay container - sits on top of photo */
+        .hero-container {
             position: relative;
-            padding: 4rem;
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
-            z-index: 10;
-            min-height: 100%;
+            z-index: 3;
+            min-height: 600px;
+        }
+
+        .hero-content-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            padding: 4rem 2rem;
+            text-align: center;
         }
 
         .hero-content {
-            max-width: 500px;
             width: 100%;
         }
 
         /* HEADLINE - Word-by-word animation */
         .hero-headline {
             font-family: "Montserrat", sans-serif;
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
             line-height: 1.15;
             margin: 0 0 1.5rem 0;
-            color: #212529;
+            color: #ffffff;
             letter-spacing: -1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .headline-word {
@@ -172,8 +147,9 @@
             font-size: 1.1rem;
             font-weight: 400;
             line-height: 1.7;
-            color: #6c757d;
+            color: rgba(255, 255, 255, 0.9);
             margin: 0 0 2.5rem 0;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
         }
 
         .subheading-line {
@@ -200,9 +176,10 @@
             gap: 2.5rem;
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 2px solid #ffc800;
+            border-top: 2px solid rgba(255, 200, 0, 0.6);
             animation: fadeIn 0.8s ease-out 1.3s forwards;
             opacity: 0;
+            justify-content: center;
         }
 
         @keyframes fadeIn {
@@ -247,11 +224,11 @@
 
         .proof-label {
             font-size: 0.8rem;
-            opacity: 0.85;
+            opacity: 0.9;
             letter-spacing: 0.5px;
             text-transform: uppercase;
             font-weight: 600;
-            color: #212529;
+            color: rgba(255, 255, 255, 0.85);
         }
 
         .proof-stars {
@@ -262,8 +239,8 @@
 
         .proof-rating {
             font-size: 0.8rem;
-            opacity: 0.85;
-            color: #212529;
+            opacity: 0.9;
+            color: rgba(255, 255, 255, 0.85);
             font-weight: 500;
             line-height: 1.4;
         }
@@ -274,7 +251,7 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             padding: 5rem 2rem;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+            background: linear-gradient(180deg, rgba(33, 37, 41, 0.95) 0%, rgba(33, 37, 41, 0.98) 100%);
             position: relative;
             z-index: 10;
             max-width: 1200px;
@@ -974,18 +951,19 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #6c757d;
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .scroll-arrow {
             width: 30px;
             height: 30px;
-            border: 2px solid #ffc800;
+            border: 2px solid rgba(255, 200, 0, 0.8);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #ffc800;
+            color: rgba(255, 200, 0, 0.8);
             font-size: 0.75rem;
             animation: scrollPulse 2s ease-in-out infinite;
         }
@@ -1013,36 +991,16 @@
         }
 
         @media (max-width: 1024px) {
+            .masthead-redesigned {
+                margin-top: 60px;
+            }
+
             .hero-container {
-                grid-template-columns: 1fr;
-                min-height: auto;
-                max-height: 900px;
+                min-height: 500px;
             }
 
-            .hero-photo-section {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 1;
-            }
-
-            .hero-text-section {
-                position: relative;
-                z-index: 2;
+            .hero-content-wrapper {
                 padding: 3rem 2rem;
-                background: linear-gradient(
-                    135deg,
-                    rgba(255, 255, 255, 0.95) 0%,
-                    rgba(255, 255, 255, 0.92) 100%
-                );
-                backdrop-filter: blur(10px);
-                min-height: 100%;
-                display: flex;
-                align-items: center;
             }
 
             .scroll-indicator {
@@ -1074,17 +1032,15 @@
             }
 
             .hero-container {
-                grid-template-columns: 1fr;
-                min-height: 600px;
+                min-height: 500px;
             }
 
-            .hero-text-section {
+            .hero-content-wrapper {
                 padding: 2rem 1.5rem;
-                background: rgba(255, 255, 255, 0.97);
             }
 
             .hero-headline {
-                font-size: clamp(1.5rem, 4vw, 2rem);
+                font-size: clamp(1.75rem, 5vw, 2.5rem);
                 margin-bottom: 1rem;
             }
 
@@ -1097,6 +1053,7 @@
                 flex-direction: column;
                 gap: 1.5rem;
                 padding-top: 1.5rem;
+                align-items: center;
             }
 
             .proof-number {
@@ -1192,20 +1149,19 @@
         </div>
     </nav>
 
-    <!-- REDESIGNED HERO SECTION WITH PERSONALITY & SCROLL ANIMATIONS -->
+    <!-- REDESIGNED HERO SECTION - FULL WIDTH PHOTO WITH TEXT OVERLAY -->
     <header class="masthead-redesigned">
-        <div class="hero-container">
-            <!-- Left Side: Animated Photo -->
-            <div class="hero-photo-section">
-                <div class="hero-photo-wrapper">
-                    <img src="assets/img/2.jpg" alt="Midnight Maddog DJ bringing energy and passion to events" class="hero-photo">
-                    <div class="hero-photo-overlay"></div>
-                    <div class="hero-accent-line"></div>
-                </div>
-            </div>
+        <!-- Full-width background image -->
+        <div class="hero-bg-container">
+            <img src="assets/img/2.jpg" alt="Midnight Maddog DJ bringing energy and passion to events" class="hero-bg-image">
+            <!-- Gradient overlay that fades to dark on edges -->
+            <div class="hero-bg-overlay"></div>
+        </div>
 
-            <!-- Right Side: Text Content -->
-            <div class="hero-text-section">
+        <!-- Hero container for text overlay -->
+        <div class="hero-container">
+            <!-- Text Content - Centered Overlay -->
+            <div class="hero-content-wrapper">
                 <div class="hero-content">
                     <h1 class="hero-headline">
                         <span class="headline-word">Your</span>
@@ -1545,21 +1501,19 @@
     <!-- Scroll Animation and Parallax Script -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Parallax effect on hero photo on scroll
-        const heroPhoto = document.querySelector('.hero-photo');
+        // Parallax effect on hero background image on scroll
+        const heroBgImage = document.querySelector('.hero-bg-image');
+        const masthead = document.querySelector('.masthead-redesigned');
         
-        if (heroPhoto) {
+        if (heroBgImage && masthead) {
             window.addEventListener('scroll', function() {
                 const scrollY = window.scrollY;
-                const heroContainer = document.querySelector('.hero-container');
+                const mastheadRect = masthead.getBoundingClientRect();
                 
-                if (heroContainer) {
-                    const rect = heroContainer.getBoundingClientRect();
-                    // Only apply parallax while hero is visible
-                    if (rect.top < window.innerHeight) {
-                        const parallaxOffset = scrollY * 0.3;
-                        heroPhoto.style.transform = `scale(1.02) translateY(${parallaxOffset}px)`;
-                    }
+                // Only apply parallax while hero is visible
+                if (mastheadRect.bottom > 0) {
+                    const parallaxOffset = scrollY * 0.3;
+                    heroBgImage.style.transform = `scale(1.02) translateY(${parallaxOffset}px)`;
                 }
             });
         }
