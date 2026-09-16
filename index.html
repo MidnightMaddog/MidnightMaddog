@@ -930,6 +930,177 @@
             color: #ffc800;
         }
 
+        /* ===== TESTIMONIAL CAROUSEL SECTION ===== */
+        .testimonial-carousel-section {
+            background: linear-gradient(135deg, #212529 0%, #2a2e33 100%);
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .testimonial-carousel {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .carousel-title {
+            font-family: "Montserrat", sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: -0.5px;
+        }
+
+        /* Carousel Wrapper & Items */
+        .carousel-wrapper {
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .testimonial-item {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+
+        .testimonial-item.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            position: relative;
+            animation: testimonialFadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes testimonialFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .testimonial-content {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .testimonial-quote {
+            font-family: "Roboto Slab", serif;
+            font-size: 1.3rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.95);
+            font-style: italic;
+            margin: 0 0 2rem 0;
+            font-weight: 300;
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: #ffc800;
+            opacity: 0.3;
+            position: absolute;
+            line-height: 0;
+            margin-left: -1rem;
+        }
+
+        .testimonial-author {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(255, 200, 0, 0.5);
+        }
+
+        .author-name {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffc800;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: 0.5px;
+        }
+
+        .author-title {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+            font-weight: 400;
+        }
+
+        /* Carousel Controls */
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .carousel-btn {
+            background: transparent;
+            border: 2px solid #ffc800;
+            color: #ffc800;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .carousel-btn:hover {
+            background: #ffc800;
+            color: #212529;
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(255, 200, 0, 0.3);
+        }
+
+        .carousel-btn:active {
+            transform: scale(0.95);
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 200, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .dot:hover {
+            background: rgba(255, 200, 0, 0.6);
+            transform: scale(1.2);
+        }
+
+        .dot.active {
+            background: #ffc800;
+            box-shadow: 0 0 10px rgba(255, 200, 0, 0.5);
+        }
+
         /* ===== RESPONSIVE STYLES ===== */
         @media (max-width: 1200px) {
             .hero-ctas {
@@ -1063,6 +1234,41 @@
                 width: 40px;
                 height: 40px;
                 font-size: 1.2rem;
+            }
+
+            /* Testimonial Carousel Mobile */
+            .testimonial-carousel-section {
+                padding: 4rem 0;
+            }
+
+            .carousel-title {
+                font-size: 1.75rem;
+                margin-bottom: 2rem;
+            }
+
+            .carousel-wrapper {
+                min-height: 300px;
+            }
+
+            .testimonial-quote {
+                font-size: 1rem;
+                line-height: 1.8;
+                margin-bottom: 1.5rem;
+            }
+
+            .carousel-controls {
+                gap: 1.5rem;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
             }
         }
     </style>
@@ -1360,7 +1566,73 @@
         </div>
     </section>
 
-    <!-- Contact-->
+    <!-- Testimonial Carousel Section -->
+    <section class="testimonial-carousel-section">
+        <div class="container">
+            <div class="testimonial-carousel">
+                <h2 class="carousel-title">What Our Clients Say</h2>
+                
+                <!-- Testimonial Items -->
+                <div class="carousel-wrapper">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-item active">
+                        <div class="testimonial-content">
+                            <p class="testimonial-quote">
+                                "Our high school has worked with Maddox for several years, and he has consistently been our first choice to DJ school dances and events. We can always count on his professionalism and punctuality. Maddox strikes the perfect balance between playing current music that excites our students and ensuring that it remains clean and appropriate for a high school audience."
+                            </p>
+                            <div class="testimonial-author">
+                                <p class="author-name">Christine Slack</p>
+                                <p class="author-title">Teacher, Covenant Day High School</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <p class="testimonial-quote">
+                                "DJ Maddog is a MUST for every party! He is the best DJ out there—executing everything flawlessly from beginning to end. He is incredibly gifted in knowing exactly what the client wants, and makes sure every detail is covered with the set up, timing, transitions, and specific music requests."
+                            </p>
+                            <div class="testimonial-author">
+                                <p class="author-name">Jenny Morgan</p>
+                                <p class="author-title">U.S. Diplomat</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <p class="testimonial-quote">
+                                "Maddog DJ has been our 'go to' DJ for all our school dances for the last 4 years. He is a great listener, takes the time to get to know his clients and is a fantastic communicator. The music is always well curated and very well received. You can see his passion for music in all he does and brings the energy to every event."
+                            </p>
+                            <div class="testimonial-author">
+                                <p class="author-name">Dr. Rebecca Burnett</p>
+                                <p class="author-title">Student Council Supervisor, Covenant Day High School</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" id="prevTestimonial">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-dots">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                    </div>
+                    <button class="carousel-btn next" id="nextTestimonial">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <section class="page-section" id="contact">
         <div class="container">
             <div class="text-center">
@@ -1429,6 +1701,76 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+    <!-- Testimonial Carousel Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Testimonial Carousel Functionality
+        let currentSlide = 0;
+        const testimonialItems = document.querySelectorAll('.testimonial-item');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = testimonialItems.length;
+        let autoRotateInterval;
+
+        function showSlide(index) {
+            // Remove active class from all items and dots
+            testimonialItems.forEach(item => item.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Add active class to current slide
+            testimonialItems[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+            resetAutoRotate();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+            resetAutoRotate();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+            resetAutoRotate();
+        }
+
+        function resetAutoRotate() {
+            clearInterval(autoRotateInterval);
+            autoRotateInterval = setInterval(nextSlide, 5000); // 5 second interval
+        }
+
+        // Event listeners for buttons
+        document.getElementById('nextTestimonial').addEventListener('click', nextSlide);
+        document.getElementById('prevTestimonial').addEventListener('click', prevSlide);
+
+        // Event listeners for dots
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                goToSlide(parseInt(this.getAttribute('data-index')));
+            });
+        });
+
+        // Start auto-rotation
+        autoRotateInterval = setInterval(nextSlide, 5000);
+
+        // Stop auto-rotate on mouse over, resume on mouse leave
+        const carouselSection = document.querySelector('.testimonial-carousel');
+        if (carouselSection) {
+            carouselSection.addEventListener('mouseenter', function() {
+                clearInterval(autoRotateInterval);
+            });
+            carouselSection.addEventListener('mouseleave', function() {
+                autoRotateInterval = setInterval(nextSlide, 5000);
+            });
+        }
+    });
+    </script>
 
     <!-- Gallery Filter and Lightbox Script -->
     <script>
