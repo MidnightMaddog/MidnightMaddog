@@ -24,6 +24,12 @@
             opacity: 0.65;
         }
 
+        /* Contact Section - Hardcoded Yellow Background */
+        #contact {
+            background-color: #ffc800 !important;
+            background-image: none !important;
+        }
+
         /* ===== ENHANCED HERO WITH FULL-WIDTH PHOTO & TEXT OVERLAY ===== */
         .masthead-redesigned {
             position: relative;
@@ -54,7 +60,6 @@
             object-fit: cover;
             object-position: center;
             animation: heroPhotoZoom 1.2s ease-out forwards;
-            will-change: transform;
         }
 
         @keyframes heroPhotoZoom {
@@ -805,7 +810,6 @@
             display: block;
             transition: transform 0.3s ease;
             opacity: 1;
-            will-change: transform;
         }
 
         .gallery-item:hover img {
@@ -926,62 +930,6 @@
             color: #ffc800;
         }
 
-        /* SCROLL INDICATOR */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.75rem;
-            z-index: 15;
-            animation: fadeInUp 0.8s ease-out 2s forwards;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-            }
-        }
-
-        .scroll-text {
-            font-family: "Montserrat", sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.7);
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-        }
-
-        .scroll-arrow {
-            width: 30px;
-            height: 30px;
-            border: 2px solid rgba(255, 200, 0, 0.8);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 200, 0, 0.8);
-            font-size: 0.75rem;
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            50% {
-                transform: translateY(8px);
-                opacity: 0.5;
-            }
-        }
-
         /* ===== RESPONSIVE STYLES ===== */
         @media (max-width: 1200px) {
             .hero-ctas {
@@ -1004,10 +952,6 @@
 
             .hero-content-wrapper {
                 padding: 3rem 2rem;
-            }
-
-            .scroll-indicator {
-                bottom: 20px;
             }
         }
 
@@ -1070,14 +1014,6 @@
 
             .cta-card {
                 padding: 1.75rem;
-            }
-
-            .scroll-indicator {
-                bottom: 15px;
-            }
-
-            .scroll-text {
-                font-size: 0.75rem;
             }
 
             .narrative-section {
@@ -1226,13 +1162,6 @@
             </div>
         </div>
 
-        <!-- Scroll indicator -->
-        <div class="scroll-indicator">
-            <span class="scroll-text">Scroll to explore</span>
-            <div class="scroll-arrow">
-                <i class="fas fa-chevron-down"></i>
-            </div>
-        </div>
     </header>
 
     <!-- NARRATIVE CARDS SECTION - Replaces "Services" -->
@@ -1500,87 +1429,6 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-
-    <!-- Scroll Animation and Optimized Parallax Script -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Optimized Parallax: Subtle, Throttled, and Stops After Hero
-        const heroBgImage = document.querySelector('.hero-bg-image');
-        const masthead = document.querySelector('.masthead-redesigned');
-        
-        if (heroBgImage && masthead) {
-            let parallaxActive = true;
-            let lastUpdate = 0;
-            const throttleDelay = 16; // ~60fps (one frame)
-            const parallaxMultiplier = 0.1; // Very subtle parallax (nearly removed)
-            
-            window.addEventListener('scroll', function() {
-                // Throttle: only update once per frame
-                const now = Date.now();
-                if (now - lastUpdate < throttleDelay) {
-                    return;
-                }
-                lastUpdate = now;
-                
-                // Stop parallax after hero is completely off-screen
-                if (!parallaxActive) {
-                    return;
-                }
-                
-                const scrollY = window.scrollY;
-                const mastheadRect = masthead.getBoundingClientRect();
-                const mastheadHeight = masthead.offsetHeight;
-                
-                // Disable parallax once hero completely exits viewport (top of page)
-                if (mastheadRect.bottom <= 0) {
-                    parallaxActive = false;
-                    return;
-                }
-                
-                // Only apply parallax while hero is visible
-                if (mastheadRect.bottom > 0) {
-                    // Very subtle parallax - barely noticeable
-                    const maxParallaxOffset = mastheadHeight * 0.15;
-                    const parallaxOffset = Math.min(scrollY * parallaxMultiplier, maxParallaxOffset);
-                    
-                    heroBgImage.style.transform = `scale(1.02) translateY(${parallaxOffset}px)`;
-                }
-            }, { passive: true }); // Passive listener for better scroll performance
-        }
-
-        // Lazy load gallery images
-        const galleryImages = document.querySelectorAll('.gallery-item img');
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        // Image is in viewport, ensure it's loaded
-                        img.style.opacity = '1';
-                        observer.unobserve(img);
-                    }
-                });
-            }, {
-                rootMargin: '50px' // Start loading 50px before entering viewport
-            });
-            
-            galleryImages.forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
-
-        // Smooth scroll for scroll indicator
-        const scrollIndicator = document.querySelector('.scroll-indicator');
-        if (scrollIndicator) {
-            scrollIndicator.addEventListener('click', function() {
-                const nextSection = document.querySelector('.narrative-section');
-                if (nextSection) {
-                    nextSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        }
-    });
-    </script>
 
     <!-- Gallery Filter and Lightbox Script -->
     <script>
