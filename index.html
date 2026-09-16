@@ -54,6 +54,7 @@
             object-fit: cover;
             object-position: center;
             animation: heroPhotoZoom 1.2s ease-out forwards;
+            will-change: transform;
         }
 
         @keyframes heroPhotoZoom {
@@ -803,6 +804,8 @@
             object-fit: cover;
             display: block;
             transition: transform 0.3s ease;
+            opacity: 1;
+            will-change: transform;
         }
 
         .gallery-item:hover img {
@@ -1153,7 +1156,7 @@
     <header class="masthead-redesigned">
         <!-- Full-width background image -->
         <div class="hero-bg-container">
-            <img src="assets/img/2 edited.jpg" alt="Midnight Maddog DJ bringing energy and passion to events" class="hero-bg-image">
+            <img src="assets/img/2.jpg" alt="Midnight Maddog DJ bringing energy and passion to events" class="hero-bg-image">
             <!-- Gradient overlay that fades to dark on edges -->
             <div class="hero-bg-overlay"></div>
         </div>
@@ -1498,30 +1501,71 @@
     <script src="js/scripts.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
-    <!-- Scroll Animation and Parallax Script -->
+    <!-- Scroll Animation and Optimized Parallax Script -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Capped Parallax effect on hero background image on scroll
+        // Optimized Parallax: Subtle, Throttled, and Stops After Hero
         const heroBgImage = document.querySelector('.hero-bg-image');
         const masthead = document.querySelector('.masthead-redesigned');
         
         if (heroBgImage && masthead) {
+            let parallaxActive = true;
+            let lastUpdate = 0;
+            const throttleDelay = 16; // ~60fps (one frame)
+            const parallaxMultiplier = 0.1; // Very subtle parallax (nearly removed)
+            
             window.addEventListener('scroll', function() {
+                // Throttle: only update once per frame
+                const now = Date.now();
+                if (now - lastUpdate < throttleDelay) {
+                    return;
+                }
+                lastUpdate = now;
+                
+                // Stop parallax after hero is completely off-screen
+                if (!parallaxActive) {
+                    return;
+                }
+                
                 const scrollY = window.scrollY;
                 const mastheadRect = masthead.getBoundingClientRect();
                 const mastheadHeight = masthead.offsetHeight;
                 
+                // Disable parallax once hero completely exits viewport (top of page)
+                if (mastheadRect.bottom <= 0) {
+                    parallaxActive = false;
+                    return;
+                }
+                
                 // Only apply parallax while hero is visible
                 if (mastheadRect.bottom > 0) {
-                    // Multiplier for more dynamic effect
-                    const parallaxMultiplier = 0.5;
-                    // Cap the parallax at a reasonable max (30% of hero height)
-                    const maxParallaxOffset = mastheadHeight * 0.3;
-                    // Calculate parallax but cap it
+                    // Very subtle parallax - barely noticeable
+                    const maxParallaxOffset = mastheadHeight * 0.15;
                     const parallaxOffset = Math.min(scrollY * parallaxMultiplier, maxParallaxOffset);
                     
                     heroBgImage.style.transform = `scale(1.02) translateY(${parallaxOffset}px)`;
                 }
+            }, { passive: true }); // Passive listener for better scroll performance
+        }
+
+        // Lazy load gallery images
+        const galleryImages = document.querySelectorAll('.gallery-item img');
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        // Image is in viewport, ensure it's loaded
+                        img.style.opacity = '1';
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px' // Start loading 50px before entering viewport
+            });
+            
+            galleryImages.forEach(img => {
+                imageObserver.observe(img);
             });
         }
 
