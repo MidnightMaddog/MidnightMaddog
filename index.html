@@ -963,6 +963,12 @@
             margin-bottom: 3rem;
         }
 
+        .carousel-wrapper {
+            touch-action: pan-y; /* allow vertical page scroll, let JS handle horizontal swipes */
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
         .testimonial-item {
             position: absolute;
             width: 100%;
@@ -1693,6 +1699,7 @@
                         <span class="dot active" data-index="0"></span>
                         <span class="dot" data-index="1"></span>
                         <span class="dot" data-index="2"></span>
+                        <span class="dot" data-index="3"></span>
                     </div>
                     <button class="carousel-btn next" id="nextTestimonial">
                         <i class="fas fa-chevron-right"></i>
@@ -1775,70 +1782,94 @@
     <!-- Testimonial Carousel Script -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Testimonial Carousel Functionality
         let currentSlide = 0;
         const testimonialItems = document.querySelectorAll('.testimonial-item');
         const dots = document.querySelectorAll('.dot');
         const totalSlides = testimonialItems.length;
-        let autoRotateInterval;
+        let autoRotateTimer = null;
+        let paused = false;
+
+        // Time on screen scales with quote length so every quote can be read fully:
+        // 7s base + 0.4s per word (a ~55-word quote stays up about 29s).
+        function displayTimeFor(index) {
+            const words = testimonialItems[index].querySelector('.testimonial-quote')
+                .textContent.trim().split(/\s+/).length;
+            return 7000 + words * 400;
+        }
 
         function showSlide(index) {
-            // Remove active class from all items and dots
             testimonialItems.forEach(item => item.classList.remove('active'));
             dots.forEach(dot => dot.classList.remove('active'));
-
-            // Add active class to current slide
             testimonialItems[index].classList.add('active');
-            dots[index].classList.add('active');
+            if (dots[index]) dots[index].classList.add('active');
         }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
+        function scheduleNext() {
+            clearTimeout(autoRotateTimer);
+            if (paused) return;
+            autoRotateTimer = setTimeout(function() {
+                changeSlide(currentSlide + 1);
+            }, displayTimeFor(currentSlide));
+        }
+
+        function changeSlide(index) {
+            currentSlide = (index + totalSlides) % totalSlides;
             showSlide(currentSlide);
-            resetAutoRotate();
+            scheduleNext();
         }
 
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(currentSlide);
-            resetAutoRotate();
-        }
+        function pause()  { paused = true;  clearTimeout(autoRotateTimer); }
+        function resume() { paused = false; scheduleNext(); }
 
-        function goToSlide(index) {
-            currentSlide = index;
-            showSlide(currentSlide);
-            resetAutoRotate();
-        }
-
-        function resetAutoRotate() {
-            clearInterval(autoRotateInterval);
-            autoRotateInterval = setInterval(nextSlide, 5000); // 5 second interval
-        }
-
-        // Event listeners for buttons
-        document.getElementById('nextTestimonial').addEventListener('click', nextSlide);
-        document.getElementById('prevTestimonial').addEventListener('click', prevSlide);
-
-        // Event listeners for dots
+        // Buttons and dots
+        document.getElementById('nextTestimonial').addEventListener('click', () => changeSlide(currentSlide + 1));
+        document.getElementById('prevTestimonial').addEventListener('click', () => changeSlide(currentSlide - 1));
         dots.forEach(dot => {
             dot.addEventListener('click', function() {
-                goToSlide(parseInt(this.getAttribute('data-index')));
+                changeSlide(parseInt(this.getAttribute('data-index')));
             });
         });
 
-        // Start auto-rotation
-        autoRotateInterval = setInterval(nextSlide, 5000);
-
-        // Stop auto-rotate on mouse over, resume on mouse leave
+        // Pause while hovering (desktop)
         const carouselSection = document.querySelector('.testimonial-carousel');
         if (carouselSection) {
-            carouselSection.addEventListener('mouseenter', function() {
-                clearInterval(autoRotateInterval);
-            });
-            carouselSection.addEventListener('mouseleave', function() {
-                autoRotateInterval = setInterval(nextSlide, 5000);
-            });
+            carouselSection.addEventListener('mouseenter', pause);
+            carouselSection.addEventListener('mouseleave', resume);
         }
+
+        // Swipe support (phones/tablets)
+        const swipeArea = document.querySelector('.carousel-wrapper');
+        let startX = 0, startY = 0, tracking = false;
+        const SWIPE_THRESHOLD = 50; // px
+
+        swipeArea.addEventListener('touchstart', function(e) {
+            const t = e.touches[0];
+            startX = t.clientX;
+            startY = t.clientY;
+            tracking = true;
+            pause();
+        }, { passive: true });
+
+        swipeArea.addEventListener('touchend', function(e) {
+            if (!tracking) return;
+            tracking = false;
+            const t = e.changedTouches[0];
+            const dx = t.clientX - startX;
+            const dy = t.clientY - startY;
+            // Only count mostly-horizontal gestures so vertical page scrolling still works
+            if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy) * 1.5) {
+                changeSlide(dx < 0 ? currentSlide + 1 : currentSlide - 1);
+            }
+            resume();
+        }, { passive: true });
+
+        swipeArea.addEventListener('touchcancel', function() {
+            tracking = false;
+            resume();
+        }, { passive: true });
+
+        // Start auto-rotation
+        scheduleNext();
     });
     </script>
 
