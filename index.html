@@ -30,6 +30,183 @@
             background-image: none !important;
         }
 
+        /* ===== CONTACT FORM ===== */
+        #contact .cf-wrap {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .cf-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.1rem 1.25rem;
+        }
+
+        .cf-field {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .cf-full {
+            grid-column: 1 / -1;
+        }
+
+        .cf-label {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #212529;
+            margin-bottom: 0.4rem;
+        }
+
+        .cf-label .cf-opt {
+            font-weight: 400;
+            opacity: 0.75;
+        }
+
+        .cf-input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem 0.9rem;
+            font-family: "Montserrat", sans-serif;
+            font-size: 1rem;
+            line-height: 1.4;
+            color: #212529;
+            background: #fff;
+            border: 2px solid #212529;
+            border-radius: 6px;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .cf-input:focus {
+            outline: 3px solid #212529;
+            outline-offset: 2px;
+        }
+
+        .cf-input[aria-invalid="true"] {
+            border-color: #8a0016;
+            box-shadow: 0 0 0 1px #8a0016;
+        }
+
+        .cf-select {
+            -webkit-appearance: none;
+            appearance: none;
+            padding-right: 2.5rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23212529' stroke-width='2'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.9rem center;
+        }
+
+        .cf-textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .cf-error {
+            margin: 0.35rem 0 0;
+            min-height: 0;
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #8a0016;
+        }
+
+        .cf-error:empty {
+            display: none;
+        }
+
+        .cf-form-error {
+            margin-bottom: 1rem;
+            padding: 0.85rem 1rem;
+            background: #fff;
+            color: #212529;
+            border: 2px solid #8a0016;
+            border-left-width: 8px;
+            border-radius: 6px;
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .cf-form-error[hidden],
+        .cf-success[hidden] {
+            display: none;
+        }
+
+        .btn.cf-submit {
+            background: #212529;
+            border-color: #212529;
+            color: #ffc800;
+            padding: 0.85rem 2.25rem;
+        }
+
+        .btn.cf-submit:hover:not(:disabled) {
+            background: #000;
+            border-color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn.cf-submit:focus-visible {
+            outline: 3px solid #212529;
+            outline-offset: 3px;
+        }
+
+        .btn.cf-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Honeypot: off-screen (not display:none, which some bots skip) */
+        .cf-hp {
+            position: absolute;
+            left: -10000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .cf-success {
+            padding: 2rem 1.5rem;
+            background: #212529;
+            color: #fff;
+            border-radius: 8px;
+            text-align: center;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .cf-success:focus {
+            outline: none;
+        }
+
+        .cf-success-title {
+            margin: 0 0 0.75rem;
+            color: #ffc800;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 700;
+        }
+
+        .cf-success p {
+            margin: 0 0 0.5rem;
+        }
+
+        .cf-success .cf-success-note {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 640px) {
+            .cf-form {
+                grid-template-columns: 1fr;
+            }
+            .btn.cf-submit {
+                width: 100%;
+            }
+        }
+
         /* ===== ENHANCED HERO WITH FULL-WIDTH PHOTO & TEXT OVERLAY ===== */
         .masthead-redesigned {
             position: relative;
@@ -1744,21 +1921,63 @@
                     <div><strong>YouTube:</strong> Midnight Maddog</div>
                 </div>
             </div>
-            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                <div class="row align-items-stretch mb-5">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="invalid-feedback" data-sb-feedback="name:required"><br /></div>
-                        </div>
-                        <div class="form-group">
-                            <div class="invalid-feedback" data-sb-feedback="email:required"><br /></div>
-                        </div>
-                        <div class="form-group mb-md-0">
-                            <div class="invalid-feedback" data-sb-feedback="phone:required"><br /></div>
-                        </div>
+            <div class="cf-wrap">
+                <form id="contactForm" class="cf-form" novalidate>
+                    <div class="cf-field">
+                        <label class="cf-label" for="cf-name">Name <span aria-hidden="true">*</span></label>
+                        <input class="cf-input" type="text" id="cf-name" name="name" maxlength="100" autocomplete="name" required aria-required="true" aria-describedby="cf-name-error">
+                        <p class="cf-error" id="cf-name-error" role="alert"></p>
                     </div>
+                    <div class="cf-field">
+                        <label class="cf-label" for="cf-email">Email <span aria-hidden="true">*</span></label>
+                        <input class="cf-input" type="email" id="cf-email" name="email" maxlength="254" autocomplete="email" inputmode="email" required aria-required="true" aria-describedby="cf-email-error">
+                        <p class="cf-error" id="cf-email-error" role="alert"></p>
+                    </div>
+                    <div class="cf-field">
+                        <label class="cf-label" for="cf-phone">Phone <span class="cf-opt">(optional)</span></label>
+                        <input class="cf-input" type="tel" id="cf-phone" name="phone" maxlength="30" autocomplete="tel" inputmode="tel" aria-describedby="cf-phone-error">
+                        <p class="cf-error" id="cf-phone-error" role="alert"></p>
+                    </div>
+                    <div class="cf-field">
+                        <label class="cf-label" for="cf-date">Event date <span class="cf-opt">(optional)</span></label>
+                        <input class="cf-input" type="date" id="cf-date" name="eventDate" aria-describedby="cf-date-error">
+                        <p class="cf-error" id="cf-date-error" role="alert"></p>
+                    </div>
+                    <div class="cf-field cf-full">
+                        <label class="cf-label" for="cf-type">Event type <span aria-hidden="true">*</span></label>
+                        <select class="cf-input cf-select" id="cf-type" name="eventType" required aria-required="true" aria-describedby="cf-type-error">
+                            <option value="">Select an event type</option>
+                            <option value="Wedding">Wedding</option>
+                            <option value="School Event">School Event</option>
+                            <option value="Community Event">Community Event</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <p class="cf-error" id="cf-type-error" role="alert"></p>
+                    </div>
+                    <div class="cf-field cf-full">
+                        <label class="cf-label" for="cf-message">Message <span aria-hidden="true">*</span></label>
+                        <textarea class="cf-input cf-textarea" id="cf-message" name="message" rows="5" maxlength="2000" required aria-required="true" aria-describedby="cf-message-error" placeholder="Tell me about your event: location, guest count, music style, timing..."></textarea>
+                        <p class="cf-error" id="cf-message-error" role="alert"></p>
+                    </div>
+
+                    <!-- Honeypot: real visitors never see or fill this. Bots often do. -->
+                    <div class="cf-hp" aria-hidden="true">
+                        <label for="cf-website">Leave this field empty</label>
+                        <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div class="cf-full">
+                        <div class="cf-form-error" id="cf-form-error" role="alert" hidden></div>
+                        <button type="submit" class="btn cf-submit" id="cf-submit">Send Message</button>
+                    </div>
+                </form>
+
+                <div class="cf-success" id="cf-success" role="status" tabindex="-1" hidden>
+                    <h3 class="cf-success-title">Thanks<span id="cf-success-name"></span>!</h3>
+                    <p>Your message is on its way to me. I'll read it and get back to you soon.</p>
+                    <p class="cf-success-note">Need a faster answer? Call or email me using the details above.</p>
                 </div>
-            </form>
+            </div>
         </div>
     </section>
 
@@ -1799,7 +2018,215 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+    <!-- Contact Form Script -->
+    <script>
+    (function () {
+        'use strict';
+
+        // ===== CONFIG =====
+        const WEBHOOK_URL = 'https://maddogw4.taildfa7f7.ts.net/webhook/9a826252-3d52-467c-8b47-66e10a2ee85f';
+        const REQUEST_TIMEOUT_MS = 20000;
+        // Recorded when the page loads; sent with the submission so the server can
+        // reject forms that were "filled out" implausibly fast (bots).
+        const PAGE_LOADED_AT = new Date().toISOString();
+
+        const form = document.getElementById('contactForm');
+        if (!form) return;
+
+        const successBox = document.getElementById('cf-success');
+        const formError = document.getElementById('cf-form-error');
+        const submitBtn = document.getElementById('cf-submit');
+        const submitLabel = submitBtn.textContent;
+
+        const fields = {
+            name: document.getElementById('cf-name'),
+            email: document.getElementById('cf-email'),
+            phone: document.getElementById('cf-phone'),
+            eventDate: document.getElementById('cf-date'),
+            eventType: document.getElementById('cf-type'),
+            message: document.getElementById('cf-message')
+        };
+        const errorEls = {
+            name: document.getElementById('cf-name-error'),
+            email: document.getElementById('cf-email-error'),
+            phone: document.getElementById('cf-phone-error'),
+            eventDate: document.getElementById('cf-date-error'),
+            eventType: document.getElementById('cf-type-error'),
+            message: document.getElementById('cf-message-error')
+        };
+        const honeypot = document.getElementById('cf-website');
+
+        const EVENT_TYPES = ['Wedding', 'School Event', 'Community Event', 'Other'];
+        const EMAIL_RE = /^[^\s@<>"',;:()\[\]\\]+@[^\s@<>"',;:()\[\]\\]+\.[A-Za-z]{2,}$/;
+
+        function todayLocal() {
+            const d = new Date();
+            const pad = n => String(n).padStart(2, '0');
+            return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+        }
+        // Don't let the picker offer past dates (typing one is still caught below).
+        fields.eventDate.min = todayLocal();
+
+        // Returns an error string, or '' if the field is valid.
+        const validators = {
+            name: function (v) {
+                if (!v) return 'Please enter your name.';
+                if (v.length > 100) return 'Name must be 100 characters or fewer.';
+                return '';
+            },
+            email: function (v) {
+                if (!v) return 'Please enter your email address.';
+                if (v.length > 254 || !EMAIL_RE.test(v)) return 'Please enter a valid email address, like name@example.com.';
+                return '';
+            },
+            phone: function (v) {
+                if (!v) return '';
+                const digits = v.replace(/\D/g, '');
+                if (v.length > 30 || !/^[+\d][\d\s().+-]*$/.test(v) || digits.length < 7 || digits.length > 15) {
+                    return 'Please enter a valid phone number, or leave this blank.';
+                }
+                return '';
+            },
+            eventDate: function (v) {
+                if (!v) return '';
+                if (!/^\d{4}-\d{2}-\d{2}$/.test(v) || isNaN(Date.parse(v))) return 'Please enter a valid date.';
+                if (v < todayLocal()) return 'Please choose today or a future date.';
+                return '';
+            },
+            eventType: function (v) {
+                if (!v) return 'Please choose an event type.';
+                if (EVENT_TYPES.indexOf(v) === -1) return 'Please choose one of the listed event types.';
+                return '';
+            },
+            message: function (v) {
+                if (!v) return 'Please tell me a bit about your event.';
+                if (v.length > 2000) return 'Message must be 2,000 characters or fewer.';
+                return '';
+            }
+        };
+
+        function getValue(key) {
+            return fields[key].value.trim();
+        }
+
+        function showFieldError(key, msg) {
+            errorEls[key].textContent = msg;
+            if (msg) {
+                fields[key].setAttribute('aria-invalid', 'true');
+            } else {
+                fields[key].removeAttribute('aria-invalid');
+            }
+        }
+
+        function validateField(key) {
+            const msg = validators[key](getValue(key));
+            showFieldError(key, msg);
+            return msg === '';
+        }
+
+        function validateAll() {
+            let firstBad = null;
+            Object.keys(fields).forEach(function (key) {
+                if (!validateField(key) && !firstBad) firstBad = key;
+            });
+            return firstBad;
+        }
+
+        function showFormError(msg) {
+            formError.textContent = msg;
+            formError.hidden = false;
+        }
+        function hideFormError() {
+            formError.hidden = true;
+            formError.textContent = '';
+        }
+
+        function setBusy(busy) {
+            submitBtn.disabled = busy;
+            submitBtn.textContent = busy ? 'Sending...' : submitLabel;
+            form.setAttribute('aria-busy', busy ? 'true' : 'false');
+        }
+
+        // Validate on blur; once a field shows an error, re-check as they fix it.
+        Object.keys(fields).forEach(function (key) {
+            fields[key].addEventListener('blur', function () { validateField(key); });
+            const evt = key === 'eventType' || key === 'eventDate' ? 'change' : 'input';
+            fields[key].addEventListener(evt, function () {
+                if (fields[key].getAttribute('aria-invalid') === 'true') validateField(key);
+            });
+        });
+
+        let submitting = false;
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            if (submitting) return; // block double submissions
+            hideFormError();
+
+            const firstBad = validateAll();
+            if (firstBad) {
+                fields[firstBad].focus();
+                return;
+            }
+
+            submitting = true;
+            setBusy(true);
+
+            const payload = {
+                name: getValue('name'),
+                email: getValue('email'),
+                phone: getValue('phone'),
+                eventType: getValue('eventType'),
+                eventDate: getValue('eventDate'),
+                message: getValue('message'),
+                website: honeypot.value,          // honeypot: must be empty
+                loadedAt: PAGE_LOADED_AT,          // when the page loaded
+                submittedAt: new Date().toISOString()
+            };
+
+            const controller = new AbortController();
+            const timer = setTimeout(function () { controller.abort(); }, REQUEST_TIMEOUT_MS);
+            const fallbackMsg = "Sorry, your message couldn't be sent. Please email or call me directly using the details above.";
+
+            try {
+                const res = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                    signal: controller.signal
+                });
+
+                let data = null;
+                try { data = await res.json(); } catch (_) { /* non-JSON response */ }
+
+                if (res.ok && data && data.ok === true) {
+                    document.getElementById('cf-success-name').textContent =
+                        payload.name ? ', ' + payload.name.split(/\s+/)[0] : '';
+                    form.hidden = true;
+                    successBox.hidden = false;
+                    successBox.focus();
+                    submitting = true; // form is gone; keep it locked
+                    return;
+                }
+
+                if (res.status === 400 && data && typeof data.error === 'string' && data.error) {
+                    showFormError(data.error + ' If this keeps happening, please email or call me directly using the details above.');
+                } else {
+                    showFormError(fallbackMsg);
+                }
+            } catch (err) {
+                showFormError(fallbackMsg);
+            } finally {
+                clearTimeout(timer);
+                if (form.hidden !== true) {
+                    submitting = false;
+                    setBusy(false); // inputs are left untouched so nothing is lost
+                }
+            }
+        });
+    })();
+    </script>
 
     <!-- Testimonial Carousel Script -->
     <script>
